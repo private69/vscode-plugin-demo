@@ -1,0 +1,82 @@
+{
+    "name": "vscode-plugin-demo",
+    "displayName": "vscode-plugin-test",
+    "description": "VSCode插件开发测试",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.53.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:vscode-plugin-demo.helloWorld",
+        "onCommand:extension.test.fileUri",
+        "onCommand:extension.test.textEditor",
+        "onLanguage:json",
+        "onCommand:extension.test.mkdir"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [{
+                "command": "vscode-plugin-demo.helloWorld",
+                "title": "Hello World"
+            },
+            {
+                "command": "extension.test.fileUri",
+                "title": "获取当前文件路径"
+            },
+            {
+                "command": "extension.test.textEditor",
+                "title": "打开文件"
+            },
+            {
+                "command": "extension.test.mkdir",
+                "title": "创建包含该文件名的目录"
+            }
+        ],
+        "keybindings": [{
+            "command": "vscode-plugin-demo.helloWorld",
+            "key": "ctrl+0",
+            "when": "editorTextFocus"
+        }],
+        "menus": {
+            "editor/context": [{
+                    "when": "editorFocus",
+                    "command": "vscode-plugin-demo.helloWorld",
+                    "group": "navigation"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.test.textEditor",
+                    "group": "navigation"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.test.mkdir",
+                    "group": "navigation"
+                }
+            ],
+            "explorer/context": [{
+                "command": "extension.test.fileUri",
+                "group": "navigation"
+            }]
+        }
+    },
+    "scripts": {
+        "lint": "eslint .",
+        "pretest": "npm run lint",
+        "test": "node ./test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.53.0",
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.0.4",
+        "@types/node": "^12.11.7",
+        "eslint": "^7.19.0",
+        "glob": "^7.1.6",
+        "mocha": "^8.2.1",
+        "typescript": "^4.1.3",
+        "vscode-test": "^1.5.0"
+    }
+}
